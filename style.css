@@ -1,0 +1,327 @@
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: unset;
+    min-height: 100dvh;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  a, 
+  a:visited {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  fieldset,
+  button {
+    border: none;
+  }
+
+  :focus {
+    outline: 0;
+  }
+
+  img,
+  picture,
+  svg,
+  canvas {
+    display: block;
+    max-inline-size: 100%;
+    block-size: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@font-face {
+  font-family: 'norsebold';
+  src: url('assets/fonts/norse-bold/norse-bold-webfont.woff2') format('woff2'),
+       url('assets/fonts/norse-bold/norse-bold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+:root {
+  --system-ui: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, 
+  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --leaf-green: #596d48;
+  --leaf-less-green: #6ea258;
+  --leaf-yellow: #d3b55b;
+}
+
+html {
+  font-size: 16px;
+}
+
+/* Layout */
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  transition: color 0.3s ease;
+}
+
+#wrapper {
+  flex: 1;
+  display: flex;
+  font-family: var(--system-ui);
+}
+
+header  {
+  flex: 1;
+  background: url('./assets/images/leaves-image.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  color: #eee;
+}
+
+header div {
+  height: auto;
+  width: 100%;
+  position: absolute;
+  top: 25%;
+  background: hwb(0 0% 100% / 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2% 0;
+}
+
+img {
+  height: calc(4rem + 3vw);
+}
+
+header h1 {
+  font-family: norsebold;
+  font-size: calc(3rem + 3vw);
+}
+
+header p {
+  position: absolute;
+  bottom: clamp(8px, 1.5%, 16px);
+  width: 100%;
+  text-align: center;
+  font-size: calc(0.35rem + 0.5vw);
+}
+
+header a {
+  text-decoration: underline;
+}
+
+header a:visited {
+  color: #ccc;
+}
+
+header a:hover {
+  color: #fff;
+}
+
+header a:active {
+  color: var(--leaf-yellow);
+}
+
+main {
+  flex: 2;
+  display: flex;
+  background: #f8f8f8;
+}
+
+main > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: calc(2rem + 1vw);
+  padding: calc(1.5rem + 1vw) 0;
+}
+
+#message {
+  max-inline-size: 59ch;
+}
+
+#message,
+fieldset,
+#form-actions {
+  --left-padding: 4%;
+  --input-width: calc(10rem + 5vw);
+  padding-left: var(--left-padding);
+}
+
+main {
+  font-size: calc(0.65rem + 0.4vw);
+  font-weight: 500;
+  line-height: 1.3;
+  word-spacing: 0.05em;
+}
+
+form {
+  --highlight-shadow: 0.25em 0.25em 0.4em rgba(204, 204, 204, 0.75);
+  display: flex;
+  flex-direction: column;
+  gap: calc(2rem + 1vw);
+}
+
+label, 
+button {
+  cursor: pointer;
+}
+
+
+fieldset {
+  --column-gap: 3.25em;
+  background: #fff;
+  box-shadow: 0 0.25em 0.5em rgba(204, 204, 204, 0.75);
+  position: relative;
+  padding-top: 3.25em;
+  padding-bottom: 2.25em;
+  padding-right: 
+    calc(100% - calc(calc(var(--input-width) * 2) + var(--column-gap) + var(--left-padding)));
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--column-gap);
+  row-gap: 1.25em;
+}
+
+legend {
+  position: absolute;
+  top: 1em;
+}
+
+fieldset div {
+  --border-color: #e5e7eb;
+  --focus-color: #3838df;
+  --invalid-color: #e43333;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1em;
+}
+
+label {
+  font-size: 0.5em;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  word-spacing: 0.1em;
+  color: #444;
+}
+
+input {
+  font-size: 0.75em;
+  padding: 0.4em;
+  width: var(--input-width);
+  height: 2.5em;
+  border: clamp(2px, 0.25em, 3px) solid var(--border-color);
+  border-radius: 0.25em;
+}
+
+input:focus {
+  border-color: var(--focus-color);
+  box-shadow: var(--highlight-shadow);
+}
+
+/*
+input:user-invalid {
+  border-color: var(--invalid-color);
+}
+*/
+
+.invalid {
+  border-color: var(--invalid-color);
+}
+
+.error {
+  --padding-top: 0.1em;
+  --font-size: 0.55em;
+  padding-top: var(--padding-top);
+  font-size: var(--font-size);
+  height: calc(var(--font-size) + var(--padding-top));
+  color: var(--invalid-color);
+}
+
+#form-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 0.75em;
+  gap: 2em;
+}
+
+button[type=submit] {
+  padding: 1em 4em;
+  background: var(--leaf-green);
+  border-radius: 0.4em;
+  box-shadow: var(--highlight-shadow);
+  color: #fff;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+button[type=submit]:hover {
+  background: var(--leaf-less-green);
+}
+
+button[type=submit]:active {
+  background: var(--leaf-yellow);
+}
+
+#form-actions a {
+  font-weight: 600;
+  color: var(--leaf-green);
+}
+
+#form-actions a:visited {
+  color: #5a3608;
+}
+
+#form-actions a:hover {
+  color: var(--leaf-less-green);
+}
+
+#form-actions a:active {
+  color: var(--leaf-yellow);
+}
+
+@media only screen and (max-width: 768px) {
+  #wrapper {
+    flex-direction: column;
+  }
+
+  header {
+    flex: 0 0 60dvh;
+  }
+
+  main {
+    flex: 1;  
+  }
+
+  #message {
+    padding-right: 4%;
+  }
+}
+
